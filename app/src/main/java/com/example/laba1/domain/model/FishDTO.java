@@ -15,8 +15,18 @@ public class FishDTO {
     private String FishName;
     @ColumnInfo(name = "FishDescription")
     private String FishDescription;
+
+    public FishDTO() {
+    }
+
     @ColumnInfo(name = "FishBait")
     private String FishBait;
+
+    public FishDTO(@NonNull String fishName, String fishDescription, String fishBait) {
+        FishName = fishName;
+        FishDescription = fishDescription;
+        FishBait = fishBait;
+    }
 
     public String getFishBait() {
         return FishBait;
@@ -34,10 +44,6 @@ public class FishDTO {
         FishId = fishId;
     }
 
-    public FishDTO(@NonNull String fishName) {
-        FishName = fishName;
-    }
-
     public String getFishName() {
         return FishName;
     }
@@ -50,7 +56,7 @@ public class FishDTO {
         FishDescription = fishDescription;
     }
 
-    public void setFishName(String FishName) {
-        FishName = FishName;
+    public void setFishName(String fishName) {
+        FishName = fishName;
     }
 }

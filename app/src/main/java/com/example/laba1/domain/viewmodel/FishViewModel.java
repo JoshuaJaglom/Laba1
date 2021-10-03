@@ -23,7 +23,7 @@ public class FishViewModel extends AndroidViewModel {
         AllFishes = fishRepository.getAllFishes();
     }
 
-    LiveData<List<FishDTO>> getAllFishes() {
+    public LiveData<List<FishDTO>> getAllFishes() {
         return AllFishes;
     }
 
