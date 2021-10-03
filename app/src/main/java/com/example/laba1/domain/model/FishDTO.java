@@ -7,56 +7,77 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Fish_table")
 public class FishDTO {
-    @ColumnInfo(name = "FishId")
+    @ColumnInfo(name = "fishId")
     @PrimaryKey(autoGenerate = true)
-    private int FishId;
+    private int fishId;
     @NonNull
-    @ColumnInfo(name = "FishName")
-    private String FishName;
-    @ColumnInfo(name = "FishDescription")
-    private String FishDescription;
+    @ColumnInfo(name = "fishName")
+    private String fishName;
+    @ColumnInfo(name = "fishDescription")
+    private String fishDescription;
+    @ColumnInfo(name = "fishBait")
+    private String fishBait;
+    @ColumnInfo(name = "FishStartSeason")
+    private String fishStartSeason;
+    @ColumnInfo(name = "FishEndSeason")
+    private String fishEndSeason;
 
     public FishDTO() {
     }
 
-    @ColumnInfo(name = "FishBait")
-    private String FishBait;
+    public void setFishStartSeason(String fishStartSeason) {
+        this.fishStartSeason = fishStartSeason;
+    }
 
-    public FishDTO(@NonNull String fishName, String fishDescription, String fishBait) {
-        FishName = fishName;
-        FishDescription = fishDescription;
-        FishBait = fishBait;
+    public void setFishEndSeason(String fishEndSeason) {
+        this.fishEndSeason = fishEndSeason;
+    }
+
+    public String getFishStartSeason() {
+        return fishStartSeason;
+    }
+
+    public String getFishEndSeason() {
+        return fishEndSeason;
     }
 
     public String getFishBait() {
-        return FishBait;
+        return fishBait;
     }
 
     public void setFishBait(String fishBait) {
-        FishBait = fishBait;
+        this.fishBait = fishBait;
     }
 
     public int getFishId() {
-        return FishId;
+        return fishId;
+    }
+
+    public FishDTO(@NonNull String fishName, String fishDescription, String fishBait, String fishStartSeason, String fishEndSeason) {
+        this.fishName = fishName;
+        this.fishDescription = fishDescription;
+        this.fishBait = fishBait;
+        this.fishStartSeason = fishStartSeason;
+        this.fishEndSeason = fishEndSeason;
     }
 
     public void setFishId(int fishId) {
-        FishId = fishId;
+        this.fishId = fishId;
     }
 
     public String getFishName() {
-        return FishName;
+        return fishName;
     }
 
     public String getFishDescription() {
-        return FishDescription;
+        return fishDescription;
     }
 
     public void setFishDescription(String fishDescription) {
-        FishDescription = fishDescription;
+        this.fishDescription = fishDescription;
     }
 
     public void setFishName(String fishName) {
-        FishName = fishName;
+        this.fishName = fishName;
     }
 }

@@ -39,6 +39,20 @@
             android:layout_height="wrap_content"
             android:hint="Nazhivka dl'a ribi" />
 
+        <EditText
+            android:id="@+id/ETStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fishing start season"
+            android:focusable="false"/>
+
+        <EditText
+            android:id="@+id/ETEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fishing end season"
+            android:focusable="false" />
+
         <Button
             android:id="@+id/button_save"
             android:layout_width="match_parent"
