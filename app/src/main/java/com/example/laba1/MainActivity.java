@@ -3,7 +3,6 @@ package com.example.laba1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,9 +18,9 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.laba1.domain.model.FishDTO;
 import com.example.laba1.domain.viewmodel.FishViewModel;
 import com.example.laba1.presentation.view.AddFishActivity;
+import com.example.laba1.presentation.view.InfoActivity;
 import com.example.laba1.presentation.view.adapters.FishListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,17 +56,23 @@ public class MainActivity extends AppCompatActivity {
         fishViewModel.getAllFishes().observe(this, fishes -> fishListAdapter.setFishes(fishes));
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
-            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView,
+                                  @NonNull @NotNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull @NotNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
             public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_CALENDAR}, MY_PERMISSIONS_REQUEST_ACCESS);
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.WRITE_CALENDAR},
+                            MY_PERMISSIONS_REQUEST_ACCESS);
                 }
-                else if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED){
+                else if(ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED){
 
                     ContentResolver cr = getContentResolver();
                     ContentValues cv = new ContentValues();
@@ -98,6 +102,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                int position = viewHolder.getAdapterPosition();
+                intent.putExtra("fishId", fishListAdapter.getData().get(position).getFishId());
+                startActivity(intent);
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 }

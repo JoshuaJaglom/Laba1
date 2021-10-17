@@ -20,4 +20,7 @@ public interface FishDAO {
 
     @Query("SELECT * FROM Fish_table")
     LiveData<List<FishDTO>> getAllFishes();
+
+    @Query("SELECT * FROM Fish_table WHERE fishId = :id")
+    LiveData<FishDTO> getById(int id);
 }

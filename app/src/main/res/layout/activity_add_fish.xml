@@ -53,6 +53,13 @@
             android:hint="Fishing end season"
             android:focusable="false" />
 
+        <EditText
+            android:id="@+id/ETWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prefer Weather"
+            />
+
         <Button
             android:id="@+id/button_save"
             android:layout_width="match_parent"

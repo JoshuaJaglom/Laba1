@@ -24,7 +24,7 @@ import java.util.Calendar;
 
 
 public class AddFishActivity extends AppCompatActivity {
-    EditText fishName, fishDescription, fishBait, fishStartSeason, fishEndSeason;
+    EditText fishName, fishDescription, fishBait, fishStartSeason, fishEndSeason, preferWeather;
     Button save;
     private LocalDateTime time;
     private FishViewModel fishViewModel;
@@ -37,6 +37,7 @@ public class AddFishActivity extends AppCompatActivity {
         fishBait = findViewById(R.id.ETBait);
         fishStartSeason = findViewById(R.id.ETStart);
         fishEndSeason = findViewById(R.id.ETEnd);
+        preferWeather = findViewById(R.id.ETWeather);
         save = findViewById(R.id.button_save);
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -48,13 +49,15 @@ public class AddFishActivity extends AppCompatActivity {
                     String bait = fishBait.getText().toString();
                     String start = fishStartSeason.getText().toString();
                     String end = fishEndSeason.getText().toString();
+                    String weather = preferWeather.getText().toString();
 
                     fishViewModel = new FishViewModel(getApplication());
-                    FishDTO fish = new FishDTO(name, description, bait, start, end);
+                    FishDTO fish = new FishDTO(name, description, bait, start, end, weather);
                     fishViewModel.insert(fish);
                     finish();
                 }else {
-                    Toast.makeText(AddFishActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFishActivity.this,
+                            "Заполните все поля", Toast.LENGTH_SHORT).show();
                 }
 
             }

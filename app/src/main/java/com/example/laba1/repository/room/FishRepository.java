@@ -12,6 +12,7 @@ import java.util.List;
 public class FishRepository {
     private FishDAO FishDao;
     private LiveData<List<FishDTO>> AllFishes;
+    private LiveData<FishDTO> mData;
 
     public FishRepository(Application application) {
         FishRoomDatabase db = FishRoomDatabase.getDatabase(application);
@@ -27,5 +28,10 @@ public class FishRepository {
         FishRoomDatabase.databaseWriteExecutor.execute(() -> {
             FishDao.addFish(Fish);
         });
+    }
+
+    public LiveData<FishDTO> getById(int id) {
+        mData = FishDao.getById(id);
+        return mData;
     }
 }
