@@ -52,11 +52,11 @@ public class InfoActivity extends AppCompatActivity {
                         Temp temp = daily.getTemp();
                         double cov = pop * temp.getDay();
                         if (cov == Double.parseDouble(fishDTO.getPreferredWeather())) {
-                            ver.setText("Отлична");
+                            ver.setText("Высокая");
                         } else if (cov > Double.parseDouble(fishDTO.getPreferredWeather())){
-                            ver.setText("Хорошо");
+                            ver.setText("Средняя");
                         } else{
-                            ver.setText("Плохо");
+                            ver.setText("Маленькая");
                         }
                     }
                 });
