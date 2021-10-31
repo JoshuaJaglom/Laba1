@@ -53,7 +53,7 @@ public class AddFishActivity extends AppCompatActivity {
 
                     fishViewModel = new FishViewModel(getApplication());
                     FishDTO fish = new FishDTO(name, description, bait, start, end, weather);
-                    fishViewModel.insert(fish);
+                    fishViewModel.insertFish(fish);
                     finish();
                 }else {
                     Toast.makeText(AddFishActivity.this,
@@ -82,16 +82,20 @@ public class AddFishActivity extends AppCompatActivity {
                                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                 calendar.set(Calendar.MINUTE, minute);
 
-                                time = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
+                                time = LocalDateTime.ofInstant(calendar.toInstant(),
+                                        calendar.getTimeZone().toZoneId());
                                 fishStartSeason.setText(time.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
                             }
                         };
 
-                        new TimePickerDialog(AddFishActivity.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+                        new TimePickerDialog(AddFishActivity.this, timeSetListener,
+                                calendar.get(Calendar.HOUR_OF_DAY),
+                                calendar.get(Calendar.MINUTE), true).show();
                     }
                 };
 
-                new DatePickerDialog(AddFishActivity.this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(AddFishActivity.this, dateSetListener, calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
 
             }
         });
@@ -115,14 +119,19 @@ public class AddFishActivity extends AppCompatActivity {
                                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                 calendar.set(Calendar.MINUTE, minute);
 
-                                time = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
+                                time = LocalDateTime.ofInstant(calendar.toInstant(),
+                                        calendar.getTimeZone().toZoneId());
                                 fishEndSeason.setText(time.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
                             }
                         };
-                        new TimePickerDialog(AddFishActivity.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+                        new TimePickerDialog(AddFishActivity.this, timeSetListener,
+                                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
+                                true).show();
                     }
                 };
-                new DatePickerDialog(AddFishActivity.this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(AddFishActivity.this, dateSetListener,
+                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
     }

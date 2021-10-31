@@ -24,9 +24,18 @@ public class FishDTO {
     @ColumnInfo(name = "PreferredWeather")
     private String PreferredWeather;
 
+    public FishDTO(int fishId, @NonNull String fishName, String fishDescription, String fishBait, String fishStartSeason, String fishEndSeason, String preferredWeather) {
+        this.fishId = fishId;
+        this.fishName = fishName;
+        this.fishDescription = fishDescription;
+        this.fishBait = fishBait;
+        this.fishStartSeason = fishStartSeason;
+        this.fishEndSeason = fishEndSeason;
+        PreferredWeather = preferredWeather;
+    }
+
     public FishDTO(@NonNull String fishName, String fishDescription, String fishBait,
                    String fishStartSeason, String fishEndSeason, String preferredWeather) {
-        this.fishId = fishId;
         this.fishName = fishName;
         this.fishDescription = fishDescription;
         this.fishBait = fishBait;

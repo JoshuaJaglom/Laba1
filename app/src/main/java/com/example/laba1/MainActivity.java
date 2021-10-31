@@ -33,12 +33,15 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     FishViewModel fishViewModel;
-    FishListAdapter fishListAdapter = new FishListAdapter();
+    FishListAdapter fishListAdapter;
+
+    public static String role;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +53,10 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+        Intent arg = getIntent();
+        role = arg.getStringExtra("role");
+        fishListAdapter = new FishListAdapter(fishViewModel);
         recyclerView.setAdapter(fishListAdapter);
-
-        fishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
         fishViewModel.getAllFishes().observe(this, fishes -> fishListAdapter.setFishes(fishes));
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override

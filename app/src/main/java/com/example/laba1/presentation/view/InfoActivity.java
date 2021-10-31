@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.laba1.R;
@@ -20,6 +22,7 @@ public class InfoActivity extends AppCompatActivity {
 
 
     private TextView name, description, bait, start, end, predPogoda, ver;
+    ImageButton delete, change;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +35,13 @@ public class InfoActivity extends AppCompatActivity {
         end = findViewById(R.id.tvEnd);
         predPogoda = findViewById(R.id.tvPredPogoda);
         ver = findViewById(R.id.tvVer);
+        delete = findViewById(R.id.DeleteImageButton);
+        change = findViewById(R.id.ChangeImageButton);
 
         Intent arg = getIntent();
         id = arg.getIntExtra("fishId", 0);
         fishViewModel = new FishViewModel(getApplication());
-        fishViewModel.getById(id).observe(this, new Observer<FishDTO>() {
+        fishViewModel.getFishById(id).observe(this, new Observer<FishDTO>() {
             @Override
             public void onChanged(FishDTO fishDTO) {
                 name.setText(fishDTO.getFishName());
@@ -59,7 +64,9 @@ public class InfoActivity extends AppCompatActivity {
                             ver.setText("Маленькая");
                         }
                     }
+
                 });
+
             }
         });
     }

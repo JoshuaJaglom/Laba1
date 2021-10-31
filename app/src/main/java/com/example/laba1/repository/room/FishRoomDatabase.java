@@ -7,12 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.laba1.domain.model.FishDTO;
+import com.example.laba1.domain.model.UserDTO;
 import com.example.laba1.repository.room.dao.FishDAO;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {FishDTO.class}, version = 1, exportSchema = false)
+@Database(entities = {FishDTO.class, UserDTO.class}, version = 1, exportSchema = false)
 public abstract class FishRoomDatabase extends RoomDatabase {
 
     public abstract FishDAO fishDAO();
@@ -27,7 +28,7 @@ public abstract class FishRoomDatabase extends RoomDatabase {
             synchronized (FishRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            FishRoomDatabase.class, "word_database")
+                            FishRoomDatabase.class, "Fish_database")
                             .build();
                 }
             }

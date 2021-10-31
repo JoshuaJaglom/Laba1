@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Laba1">
         <activity
-            android:name=".presentation.view.InfoActivity"
+            android:name=".presentation.view.UpdateFishActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.view.AddFishActivity"
+            android:name=".presentation.view.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.view.AuthorizationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.view.InfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.view.AddFishActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
